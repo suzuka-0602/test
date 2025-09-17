@@ -1,0 +1,117 @@
+% 二次形式・ヘッシャン・シルベスター判定法のまとめ
+\documentclass\[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,amsfonts}
+\usepackage{geometry}
+\geometry{margin=25mm}
+\title{二次形式と凸性――ヘッシャンからシルベスター判定法へ}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+
+\section{二次形式 \$q(x)\$ と凹凸（1 変数）}
+1 変数の二次形式は
+
+$$
+  q(x)=ax^{2}\qquad(a\in\mathbb R).
+$$
+
+\begin{itemize}
+\item \$a>0;\Rightarrow;\textbf{下に凸}\$（convex）
+\item \$a<0;\Rightarrow;\textbf{上に凸}\$（concave）
+\end{itemize}
+判断基準は 2 階微分
+
+$$
+  q''(x)=2a
+$$
+
+の符号のみである。
+
+\section{多変数二次形式と固有値}
+\$n\$ 変数ベクトル \$\mathbf x\in\mathbb R^{n}\$ に対し
+
+$$
+  q(\mathbf x)=\mathbf x^{\mathsf T}A\mathbf x,\qquad A=A^{\mathsf T}\in\mathbb R^{n\times n}.
+$$
+
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+\$A\$ の固有値 & \$q\$ の形状 & 凹凸 \\
+\hline
+すべて \$>0\$ & お椀型     & \textbf{下に凸} \\
+すべて \$<0\$ & 逆お椀型   & \textbf{上に凸} \\
+正負が混在 & 鞍型       & \textbf{不定（非凸・非凹）} \\
+\hline
+\end{tabular}
+\end{center}
+
+\section{ヘッシャン行列と局所形状}
+一般の関数 \$f:\mathbb R^{n}\to\mathbb R\$ を点 \$\mathbf x\_{0}\$ 近傍で 2 次までテイラー展開すると
+\begin{align\*}
+f(\mathbf x) &\approx f(\mathbf x\_{0})
++\nabla f(\mathbf x\_{0})^{\mathsf T}(\mathbf x-\mathbf x\_{0})\\
+&\quad+\frac12(\mathbf x-\mathbf x\_{0})^{\mathsf T}H(\mathbf x\_{0})(\mathbf x-\mathbf x\_{0}),
+\end{align\*}
+ここで \emph{ヘッシャン行列} は
+
+$$
+  H(\mathbf x_{0})
+  =\bigl[\partial^{2}f/\partial x_{i}\partial x_{j}(\mathbf x_{0})\bigr]_{i,j}
+$$
+
+であり，対称行列である．二次項
+
+$$
+  q_{H}(\mathbf h)=\mathbf h^{\mathsf T}H(\mathbf x_{0})\,\mathbf h
+$$
+
+の符号性によって局所的な凹凸が決まる．
+
+\section{シルベスター判定法（Sylvester's Criterion）}
+ヘッシャン \$H\$ の固有値を直接計算せずに，主座小行列式を用いて正定値／負定値を判定する方法である．
+
+\subsection\*{定義}
+\$H\_{k}\$ を \$H\$ の左上 \$k\times k\$ ブロック（主座部分行列），\$\Delta\_{k}=\det H\_{k}\$ とする．
+
+\subsection\*{判定条件}
+\begin{enumerate}
+\item \textbf{正定値}（positive definite）\quad
+\$\Delta\_{1}>0,;\Delta\_{2}>0,;\dots,;\Delta\_{n}>0\$．
+\item \textbf{負定値}（negative definite）\quad
+\$(-1)^{k}\Delta\_{k}>0\quad(k=1,2,\dots,n)\$．
+\item 上記いずれにも当てはまらない場合，\textbf{不定値}（indefinite）．
+\end{enumerate}
+半正定値・半負定値の判定では \$\Delta\_{k}\ge0\$（または交互に符号を変えて \$\ge0\$）とするが，\$\Delta\_{k}=0\$ のみでは真の判別ができない場合があるので注意．
+
+\section{例：2 変数関数}
+
+$$
+  f(x,y)=-x^{2}-3y^{2}+2xy.
+$$
+
+このとき
+
+$$
+  H=\begin{pmatrix}-2 & 2\\ 2 & -6\end{pmatrix},\quad
+  \Delta_{1}=\det[-2]=-2,\quad
+  \Delta_{2}=\det H=(-2)(-6)-2\times2=8.
+$$
+
+負定値判定：
+
+$$
+  (-1)^{1}\Delta_{1}=2>0,\quad(-1)^{2}\Delta_{2}=8>0.
+$$
+
+よって \$H\$ は負定値．従って \$f\$ は局所的に \textbf{上に凸}，点 \$(0,0)\$ は局所最大点である．
+
+\section{まとめ}
+\begin{itemize}
+\item 二次形式の固有値の符号が局所的な凹凸を支配する．
+\item ヘッシャン行列は一般関数の多変数 2 階微分として，局所形状を二次形式で表す．
+\item ヘッシャンの主座小行列式の符号列により，正定値・負定値・不定値を簡便に判定できる（シルベスター判定法）．
+\end{itemize}
+
+\end{document}

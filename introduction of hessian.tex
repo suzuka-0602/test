@@ -1,0 +1,132 @@
+% 二次形式・ヘッシャン・シルベスター判定法のまとめ
+\documentclass[11pt]{jsarticle}
+\usepackage{amsmath,amssymb,amsthm,amsfonts}
+\usepackage{geometry}
+\geometry{margin=25mm}
+\title{二次形式とHの凸性について}
+\author{湯元颯真}
+\date{}
+\begin{document}
+\maketitle
+
+  そもそも二次形式って必要性があるかを知らないし，数学は嫌だと思っている人が多いと思います．
+  そこで，数学的な説明を除いて，軽くイメージで内容を掴めるように文章を作成してみます．
+理解するのが難しいとは思いますが頑張ってみてください．\\
+今回は数学的な説明を軽くして直感的に理解できるように文章を作成しました．
+もし気になる部分があればそのままchatgptなどにコピぺしてください．\\
+(原先生が授業で教えてくださったヘッシャンの計算は実はシルベスター判定法です．)
+
+\subsection{二次形式が大切な理由}
+  ニ次形式とは\(x^2 + y^{2}\)などをみたときみなさんこれがどのような関数かわかりますか？\\
+  これはxとyの変化に対して\(x^2  + y^{2} \geq 0\)となっています．\\
+  ここでこれを\( \mathbf{x}^{t} A \mathbf{y} = x^2 + y^{2} \)とすると，
+  \(
+  A = \begin{pmatrix} 1 & 0\\ 0 & 1 \end{pmatrix} 
+  \)となっている．
+  ここでAの形式自体でどのような形状になっているかを予想できたら \emph{嬉しい}．
+  そのためその予想をする方法を考えたいというのが2次形式の由来です．
+    
+  
+\section{変数の凸性について}
+
+
+\emph{微分積分のイメージ}\\
+1 変数で次の関数を考える
+\[
+  q(x)=ax^{2}\qquad(a\in\mathbb R).
+\]
+これは判断基準は位置変数関数についての 2 階微分
+\[
+  q''(x)=2a
+\]
+の符号によるため．
+\begin{itemize}
+  \item \(a>0 \;\Rightarrow\; \textbf{下に凸}\) (convex)
+  \item \(a<0 \;\Rightarrow\; \textbf{上に凸}\) (concave)
+\end{itemize}
+ここでこの2回微分での判定とへッシャンの関係をこれから考えたい．
+
+\section{ヘッシャン行列と局所形状}
+一般の関数 \(f:\mathbb R^{n}\to\mathbb R\) (つまりここでは終域がスカラーとなる)を点 \(\mathbf x_{0}\) 近傍で 2 次までテイラー展開すると
+\begin{align*}
+  f(\mathbf x) &\approx f(\mathbf x_{0})
+  +\nabla f(\mathbf x_{0})^{\mathsf T}(\mathbf x-\mathbf x_{0})\\
+  &\quad+\frac12(\mathbf x-\mathbf x_{0})^{\mathsf T}H(\mathbf x_{0})(\mathbf x-\mathbf x_{0}),
+\end{align*}
+ここで \emph{ヘッシャン行列} は
+\[
+  H(\mathbf x_{0})=\bigl[\partial^{2}f/\partial x_{i}\partial x_{j}(\mathbf x_{0})\bigr]_{i,j}
+\]
+であり，対称行列である．二次項
+\[
+  q_{H}(\mathbf x)=\mathbf x^{\mathsf T}H(\mathbf x_{0})\,\mathbf x
+\]
+の符号性によって局所的な凹凸が決まる．
+\begin{enumerate}
+  \item それぞれの変数について動かすときに必ず正をとるとき\textbf{正定値} (positive definite)という\quad
+        
+  \item それぞれの変数について動かすときに必ず負をとるとき \textbf{負定値} (negative definite)という\quad
+        
+  \item 上記いずれにも当てはまらない場合，\textbf{不定値} (indefinite).
+\end{enumerate}
+つまり，このへッシャンが正定値では(極値から微小に動かすと増加する)下に凸である．
+負定値では(極値から動かすと減少する)上に凸となる．\\
+ここで\(f(x)= ax^2\)では\(H = 2a\)である．\\
+(ここでテイラー展開の1次の項についてを考えれば極値についても議論できます．ただ，ここでは凸性を考えたいためその議論を放置します．)
+
+
+\section{多変数二次形式と固有値}
+この内容は使いにくいので読み飛ばしてもらって構いません．\\一応同値な関係の他の判定について軽く触れます．
+\(n\) 変数ベクトル \(\mathbf x\in\mathbb R^{n}\) に対し
+\[
+  q(\mathbf x)=\mathbf x^{\mathsf T}A\mathbf x,\qquad A=A^{\mathsf T}\in\mathbb R^{n\times n}.
+\]
+
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+\(A\) の固有値 & \(q\) の形状 & 凹凸\\
+\hline
+すべて \(>0\) & お椀型 & \textbf{下に凸}\\
+すべて \(<0\) & 逆お椀型 & \textbf{上に凸}\\
+正負が混在 & 鞍型 & \textbf{不定（非凸・非凹）}\\
+\hline
+\end{tabular}
+\end{center}
+
+
+\section{シルベスター判定法（Sylvester's Criterion）}
+ヘッシャン \(H\) の固有値を直接計算せずに，主座小行列式を用いて正定値／負定値を判定する方法である．
+
+\subsection*{定義}
+\(H_{k}\) を \(H\) の左上 \(k\times k\) ブロック（主座部分行列），\(\Delta_{k}=\det H_{k}\) とする．
+
+\subsection*{判定条件}
+\begin{enumerate}
+  \item \textbf{正定値} (positive definite)\quad
+        \(\Delta_{1}>0,\,\Delta_{2}>0,\,\dots,\,\Delta_{n}>0\).
+  \item \textbf{負定値} (negative definite)\quad
+        \((-1)^{k}\Delta_{k}>0\quad(k=1,2,\dots,n)\).
+  \item 上記いずれにも当てはまらない場合，\textbf{不定値} (indefinite).
+\end{enumerate}
+半正定値・半負定値の判定では \(\Delta_{k}\ge0\)（あるいは交互に符号を変えて \(\ge0\)）とするが，
+\(\Delta_{k}=0\) のみでは真の判別ができない場合があるので注意．
+
+\section{例：2 変数関数}
+\[
+  f(x,y)=-x^{2}-3y^{2}+2xy.
+\]
+このとき
+\[
+  H=\begin{pmatrix}-2 & 2\\ 2 & -6\end{pmatrix},\quad
+  \Delta_{1}=-2,\quad
+  \Delta_{2}=(-2)(-6)-2\times2=8.
+\]
+負定値判定：
+\[
+  (-1)^{1}\Delta_{1}=2>0,\quad (-1)^{2}\Delta_{2}=8>0.
+\]
+よって \(H\) は負定値．従って \(f\) は局所的に \textbf{上に凸}，点 \((0,0)\) は局所最大点である．
+
+
+\end{document}

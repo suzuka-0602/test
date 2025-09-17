@@ -1,0 +1,82 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[top=20mm,bottom=20mm,left=20mm,right=20mm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{braket}
+\usepackage{siunitx}
+\usepackage[dvipdfmx]{hyperref}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\begin{document}
+
+\begin{center}
+  {\LARGE 分子振動と協奏する超高速励起子分裂（Singlet Fission）の機構}\\
+  “Coherent singlet fission activated by symmetry breaking”DOI: 10.1038/nchem.2784
+\end{center}
+
+
+\section*{使用装置}
+\begin{itemize}
+  \item フェムト秒レーザー源：再生増幅器（\SI{800}{nm}, $<100$\,fs, \SI{1}{kHz}）による波長可変ポンプ
+  \item 可変遅延線：機械式ステージでポンプ–プローブ遅延（数fs–ns）制御
+  \item 検出系：イメージング分光器＋フォトダイオードアレイ／CMOSでスペクトル分解＆ダイナミックレンジ確保
+\end{itemize}
+
+\section*{プラズマの特徴}
+\begin{itemize}
+  \item 生成：\SIrange{e13}{e15}{W/cm^2} のフェムト秒パルスを固体／気相ターゲット照射でプラズマ形成
+  \item 電子密度：$\sim10^{23}$–$10^{26}\,\mathrm{m^{-3}}$（レーザー強度・媒質依存）
+  \item 電子温度：初期数eV（$10^4$\,K）以上、数十ps–nsで冷却・拡散
+\end{itemize}
+
+\section*{計測手法・原理}
+\begin{itemize}
+  \item ポンプ–プローブ法：ポンプでプラズマ生成、遅延プローブで透過／吸収変化$\Delta A(\lambda,t)$を全スペクトル領域で測定
+  \item 差分吸収スペクトル：
+    \[
+      \Delta A(\lambda,t)
+      = -\log\!\bigl[I_{\rm on}(\lambda,t)/I_{\rm off}(\lambda)\bigr]
+    \]
+  \item データ解析：吸収線幅やピークシフトをスペクトルフィッティングし、電子温度・コロナ密度・圧力緩和係数を推定
+  \item 時間分解能：レーザーパルス幅＋遅延精度で最高，$\mathcal{O}$(10\,fs)を実現
+\end{itemize}
+
+\section*{研究目的}
+今回は長短パルスレーザー技術の応用である超高速過渡吸収分について，九大の先生で行われていた研究をまとめたいと思う．\\
+この論文では光有機分子集合体におけるシングレット・フィッション（SF）──一重項励起状態 $S_1$ から
+二つの三重項 $T_1+T_1$ が生成される現象──の微視的メカニズムを解明している．
+対象はルブレン単結晶で
+温度依存の超高速過渡吸収分光と量子化学計算を組み合わせ，対称性破れが誘起する協奏的な過程を検証していた．
+
+\section*{装置・手法}
+
+   物質：ルブレン単結晶.高対称配置では分子間π重なりが符号打消しとなり，SF結合は弱い.\\
+ 測定：フェムト秒ポンプ–プローブ過渡吸収分光（時間分解能$\sim$\SI{100}{fs}），温度依存測定でコヒーレント振動成分を分離.\\
+   理論：$E(S_1)\approx2E(T_1)$ のエネルギー条件下で，円錐交差近傍の非断熱結合がコヒーレント経路を開く.\\
+
+
+\section*{結果}
+
+伝統的な熱活性化経路（20–50\,ps）に加え，\SI{100}{fs}以内の超高速コヒーレントSFを実験的に検出.
+ポンプ直後の分子間ねじれ振動が対称性を破れ，隣接分子間π結合を動的に活性化.
+コヒーレント経路と熱活性化経路の二重の経路の共存モデルを具体的に生じている現象と推定している．
+
+
+\section*{レーザー分光結果によるモデル}
+\[
+  S_1 \;\xrightarrow{\text{ねじれ振動／非断熱結合}}\; \ket{T_1T_1}\;\Rightarrow\; T_1 + T_1
+\]
+光励起と同時に分子間ねじれモードが励起され，$S_1$–$\ket{T_1T_1}$間のコヒーレント遷移を可能とした．
+
+\section*{研究内容の今後の展望}
+SF を応用した太陽電池では 1 光子→2 三重項生成により電流増大・効率改善が期待できる.
+また，電子–核協奏ダイナミクスの概念は他の有機光化学反応にも応用可能である.
+
+\section*{参考論文}
+\begin{enumerate}
+  \item K.~Miyata \textit{et al.}, \textit{Nature Chemistry} \textbf{9}, 983–989 (2017).
+\end{enumerate}
+今回，化学科の先生が書かれた論文を検索や生成aiとの討論を重ね，自分の解釈を固め，このレポートを作成した．
+
+\end{document}
